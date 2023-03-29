@@ -21,6 +21,10 @@ interface IMyLabelProps {
      * Color de la fuenta customizable
      */
     fontColor?: string;
+      /**
+     * backgroundColor del label POLEORETANO PRETUL ESPUMA ESPANSIVA 750 300 13 180-750
+     */ 
+    backgroundColor?: string;
 }
 
 export const MyLabel = ({ 
@@ -28,13 +32,15 @@ export const MyLabel = ({
   size = 'normal', 
   color = 'primary', 
   allCaps = false, 
-  fontColor 
+  fontColor,
+  backgroundColor,
 }: IMyLabelProps) => {
   return (
     <span 
       className={`label ${ size } text-${ color }`} 
       style={{
-        color: fontColor
+        color: fontColor,
+        backgroundColor
       }}
     >
       { allCaps ? label.toUpperCase() : label}
