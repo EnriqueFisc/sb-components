@@ -1,6 +1,6 @@
 import './myLabel.css'
 
-interface IMyLabelProps {
+export interface IMyLabelProps {
   /**
    * Texto que seerá desplegado en este componente
    */

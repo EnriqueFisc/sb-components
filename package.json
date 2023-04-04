@@ -1,7 +1,27 @@
 {
-  "name": "my-storybook",
+  "name": "fischer-storybook",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "repository": {
+    "url": "https://github.com/EnriqueFisc/sb-components",
+    "type": "git"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "typescript": ">=4.0.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "@testing-library/dom": "^9.2.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -11,18 +31,21 @@
     "@types/node": "^16.18.20",
     "@types/react": "^18.0.29",
     "@types/react-dom": "^18.0.11",
-    "react": "^18.2.0",
+    "react": ">=16",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
+    "semantic-release": "^21.0.1",
+    "typescript": ">=4.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "build-storybook",
+    "build": "npm run clean && tsc && npm run copy-files",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=7490281c6012"
+    "chromatic": "npx chromatic --project-token=7490281c6012",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +75,14 @@
       "last 1 safari version"
     ]
   },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ],
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
@@ -65,7 +96,9 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-plugin-named-exports-order": "^0.0.2",
     "chromatic": "^6.17.2",
+    "copyfiles": "^2.4.1",
     "prop-types": "^15.8.1",
+    "rimraf": "^4.4.1",
     "webpack": "^5.76.3"
   },
   "readme": "ERROR: No README data found!",
